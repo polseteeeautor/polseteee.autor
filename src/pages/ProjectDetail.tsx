@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { Link, useParams } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 // Mock data for project images
 const projectGalleries: Record<string, { 
@@ -279,8 +280,11 @@ export default function ProjectDetail() {
                 <img 
                   src={project.images[currentIndex]} 
                   alt={`${project.title} - ${currentIndex + 1}`}
-                  className="max-w-full max-h-full object-contain cursor-pointer"
+                  className="max-w-full max-h-full object-contain cursor-pointer select-none pointer-events-auto"
                   onClick={() => paginate(1)}
+                  onContextMenu={(e) => e.preventDefault()}
+                  onDragStart={(e) => e.preventDefault()}
+                  draggable={false}
                   referrerPolicy="no-referrer"
                 />
               </motion.div>
@@ -326,13 +330,16 @@ export default function ProjectDetail() {
 
       {/* 4. Written Piece Section */}
       {project.fullText && (
-        <section id="texto-obra" className="w-full py-16 md:py-24 px-6 md:px-12 bg-white">
-          <div className="max-w-xl mx-auto">
-            <div className="font-serif text-stone-900 text-xs sm:text-sm leading-relaxed space-y-4 text-left sm:text-justify font-medium whitespace-pre-line tracking-tight px-2 sm:px-6 select-text lowercase">
-              {project.fullText}
+        <>
+          <section id="texto-obra" className="w-full py-16 md:py-24 px-6 md:px-12 bg-white">
+            <div className="max-w-xl mx-auto">
+              <div className="font-serif text-stone-900 text-xs sm:text-sm leading-relaxed space-y-4 text-left sm:text-justify font-medium whitespace-pre-line tracking-tight px-2 sm:px-6 select-text lowercase">
+                {project.fullText}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+          <Footer />
+        </>
       )}
     </div>
   );

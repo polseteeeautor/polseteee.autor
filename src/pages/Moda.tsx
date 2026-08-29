@@ -96,7 +96,8 @@ export default function Moda() {
                     hoverState: { scale: 1.05 }
                   }}
                   transition={{ duration: 0.7, ease: "easeOut" }}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover select-none pointer-events-none"
+                  draggable={false}
                   referrerPolicy="no-referrer"
                 />
                 {/* Transparent overlay: hidden on mobile, hover fade-in on desktop */}
@@ -110,6 +111,7 @@ export default function Moda() {
           ))}
         </motion.div>
       </main>
+      <Footer />
     </div>
   );
 }

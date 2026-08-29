@@ -48,7 +48,8 @@ export default function Autor() {
                     hoverState: { scale: 1.05 }
                   }}
                   transition={{ duration: 0.7, ease: "easeOut" }}
-                  className="w-full h-full object-cover grayscale"
+                  className="w-full h-full object-cover grayscale select-none pointer-events-none"
+                  draggable={false}
                   referrerPolicy="no-referrer"
                 />
                 {/* Transparent overlay: hidden on mobile, hover fade-in on desktop */}

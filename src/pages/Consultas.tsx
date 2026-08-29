@@ -179,6 +179,7 @@ export default function Consultas() {
           )}
         </motion.div>
       </main>
+      <Footer />
     </div>
   );
 }
