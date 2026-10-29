@@ -43,6 +43,11 @@ const projects = [
     id: "emergentes",
     title: "Emergentes x Lautaro",
     image: "/fotos/DSC_5030.jpg"
+  },
+  {
+    id: "emergentes-candelaria",
+    title: "Emergentes x Candelaria",
+    image: "/fotos/IMG_4688.png"
   }
 ];
 

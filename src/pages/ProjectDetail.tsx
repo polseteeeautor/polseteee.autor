@@ -16,6 +16,19 @@ const projectGalleries: Record<string, {
   city?: string
 }> = {
   // Moda Projects
+  "emergentes-candelaria": {
+    title: "Emergentes x Candelaria",
+    description: "Modelo x Candelaria Romero",
+    category: "Moda",
+    year: "2023",
+    city: "Córdoba",
+    images: [
+      "/fotos/IMG_4688.png",
+      "/fotos/IMG_4594.png",
+      "/fotos/IMG_4695.jpg",
+      "/fotos/IMG_4730.png",
+    ]
+  },
   "emergentes-keko": {
     title: "Emergentes x Keko",
     description: "Modelo x Alejo Ruiz",
@@ -154,6 +167,11 @@ export default function ProjectDetail() {
   const [direction, setDirection] = useState(0);
 
   useEffect(() => {
+    setCurrentIndex(0);
+    setDirection(0);
+  }, [projectId]);
+
+  useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft") paginate(-1);
       if (e.key === "ArrowRight") paginate(1);
@@ -180,9 +198,6 @@ export default function ProjectDetail() {
       return next;
     });
   };
-
-  const backPath = project.category === "Moda" ? "/moda" : "/autor";
-  const backLabel = `Volver a ${project.category}`;
 
   const variants = {
     enter: (direction: number) => ({
