@@ -16,6 +16,19 @@ const projectGalleries: Record<string, {
   city?: string
 }> = {
   // Moda Projects
+  "emergentes-candelaria": {
+    title: "Emergentes x Candelaria",
+    description: "Modelo x Candelaria Romero",
+    category: "Moda",
+    year: "2023",
+    city: "Córdoba",
+    images: [
+      "/fotos/IMG_4688.png",
+      "/fotos/IMG_4594.png",
+      "/fotos/IMG_4695.jpg",
+      "/fotos/IMG_4730.png",
+    ]
+  },
   "emergentes-keko": {
     title: "Emergentes x Keko",
     description: "Modelo x Alejo Ruiz",
@@ -58,135 +71,149 @@ const projectGalleries: Record<string, {
       "/fotos/DSC_0525.jpg",
       "/fotos/DSC_0516.jpg",
       "/fotos/DSC_0606.jpg",
-      "/fotos/20260318_212103340_iOS.jpg",
+      "/fotos/DSC_0614.jpg",
+      "/fotos/DSC_0575.jpg",
     ]
   },
   "saintsinners": {
     title: "Saintsinners c Mannequins Agencia",
-    description: "Modelos x Luciano Fiorotto - Julieta Acevedo - Giuliana Carpegna\nEstilista x Paula Weimann\nMaquillaje y asistencia en produccion y estilismo x Paula Garcia\nAgencia y organizacion x Mannequins Agencia - Natalia Bula - Isis Conci - Paula Weimann",
     category: "Moda",
-    year: "2025",
+    year: "2026",
     city: "Córdoba",
     images: [
       "/fotos/DSC_8825.jpg",
-      "/fotos/DSC_8853.jpg",
-      "/fotos/DSC_8893.jpg",
       "/fotos/DSC_8801-3.jpg",
       "/fotos/DSC_8814.jpg",
       "/fotos/DSC_8832.jpg",
+      "/fotos/DSC_8853.jpg",
+      "/fotos/DSC_8893.jpg",
+      "/fotos/DSC_8692.jpg",
+      "/fotos/DSC_8724.jpg",
     ]
   },
   "polaroid-lautaro": {
     title: "Polaroid x Lautaro",
     category: "Moda",
-    year: "2025",
+    year: "2026",
     city: "Córdoba",
     images: [
       "/fotos/DSC_5520.jpg",
       "/fotos/DSC_5565.jpg",
-      "/fotos/DSC_5545.jpg",
       "/fotos/DSC_5564.jpg",
+      "/fotos/DSC_5545.jpg",
     ]
   },
   "emergentes-felipe-2": {
     title: "Emergentes x Felipe II",
-    description: "Modelo x Felipe Perez",
     category: "Moda",
-    year: "2025",
+    year: "2026",
     city: "Córdoba",
     images: [
       "/fotos/DSC_5823-2.jpg",
-      "/fotos/DSC_5869-2.jpg",
+      "/fotos/DSC_5693-2.jpg",
+      "/fotos/DSC_5711-2.jpg",
       "/fotos/DSC_5802-2.jpg",
+      "/fotos/DSC_5869-2.jpg",
     ]
   },
   "emergentes-felipe": {
     title: "Emergentes x Felipe",
-    description: "Modelo x Felipe Perez",
     category: "Moda",
-    year: "2025",
+    year: "2026",
     city: "Córdoba",
     images: [
       "/fotos/DSC_5712-2.jpg",
-      "/fotos/DSC_5693-2.jpg",
-      "/fotos/DSC_5711-2.jpg",
+      "/fotos/5693.jpg",
+      "/fotos/5710.jpg",
+      "/fotos/5712.jpg",
+      "/fotos/5800.jpg",
+      "/fotos/5823.jpg",
+      "/fotos/5869.jpg",
     ]
   },
   "emergentes": {
     title: "Emergentes x Lautaro",
-    description: "Modelo x Lautaro Caceres",
     category: "Moda",
-    year: "2025",
+    year: "2026",
     city: "Córdoba",
     images: [
       "/fotos/DSC_5030.jpg",
       "/fotos/4916.jpg",
-      "/fotos/DSC_5041.jpg",
       "/fotos/4950.jpg",
+      "/fotos/5030.jpg",
+      "/fotos/5041.jpg",
+      "/fotos/DSC_5041.jpg",
       "/fotos/DSC_5044.jpg",
     ]
   },
-  "queriendo-escapar": {
-    title: "me paso la vida queriendo escapar",
-    category: "Autor",
-    year: "2024",
-    city: "Córdoba",
-    fullText: `Agradezco a quienes se atrevan a dedicarle el tiempo necesario para dejar que la obra los habite y los cuestione.
 
-«Se me pasa la vida queriendo escapar» surge de una visión del mundo donde el drama y el romance no son elementos aislados, sino una aleación densa y, a menudo, insoportable. Capaces de romper con la singularidad y cargar de una melancolía que pesa en el cuerpo. Es ese enfrentamiento constante el que construye pensamientos igual de indeseados a los momentos que nos obligan a descifrar la verdad sobre las cosas. Busco que la ansiedad y el miedo que conviven en estas sombras se transfieran al organismo de quien observa, transformando la narrativa visual en una reflexión física sobre sus propias decisiones, sus propias ruinas y sus propios intentos de fuga. Necesitamos salir.`,
+  // Autor Projects
+  "queriendo-escapar": {
+    title: "se me pasa la vida queriendo escapar",
+    category: "Autor",
     images: [
       "/fotos/DSC_8774.jpg",
-      "/fotos/DSC_8692.jpg",
-      "/fotos/DSC_8724.jpg",
     ]
   }
 };
 
-const swipeConfidenceThreshold = 800;
-const swipePower = (offset: number, velocity: number) => {
-  return Math.abs(offset) * velocity;
-};
-
 export default function ProjectDetail() {
-  const { projectId } = useParams();
-  const project = projectId ? projectGalleries[projectId] : null;
+  const { id } = useParams<{ id: string }>();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
+  const project = id ? projectGalleries[id] : null;
+
+  useEffect(() => {
+    setCurrentIndex(0);
+    setDirection(0);
+  }, [id]);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft") paginate(-1);
-      if (e.key === "ArrowRight") paginate(1);
+      if (!project || project.images.length <= 1) return;
+      if (e.key === "ArrowLeft") {
+        paginate(-1);
+      } else if (e.key === "ArrowRight" || e.key === " ") {
+        paginate(1);
+      }
     };
+
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [currentIndex]);
+  }, [project, currentIndex]);
 
   if (!project) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-editorial-muted">Proyecto no encontrado</p>
-        <Link to="/" className="ml-4 underline">Volver al inicio</Link>
+      <div className="min-h-screen bg-white text-[#1a1c1c] font-sans antialiased flex flex-col justify-between">
+        <Navbar />
+        <main className="flex-1 flex flex-col items-center justify-center p-6 text-center">
+          <h2 className="text-2xl font-light tracking-wide mb-4">Proyecto no encontrado</h2>
+          <Link 
+            to="/moda"
+            className="text-xs uppercase tracking-widest text-[#777] hover:text-[#1a1c1c] underline underline-offset-4"
+          >
+            Volver a Moda
+          </Link>
+        </main>
+        <Footer />
       </div>
     );
   }
 
   const paginate = (newDirection: number) => {
     setDirection(newDirection);
-    setCurrentIndex((prev) => {
-      let next = prev + newDirection;
-      if (next < 0) next = project.images.length - 1;
-      if (next >= project.images.length) next = 0;
-      return next;
+    setCurrentIndex((prevIndex) => {
+      let nextIndex = prevIndex + newDirection;
+      if (nextIndex < 0) nextIndex = project.images.length - 1;
+      if (nextIndex >= project.images.length) nextIndex = 0;
+      return nextIndex;
     });
   };
 
-  const backPath = project.category === "Moda" ? "/moda" : "/autor";
-  const backLabel = `Volver a ${project.category}`;
-
   const variants = {
     enter: (direction: number) => ({
-      x: direction > 0 ? 1000 : -1000,
+      x: direction > 0 ? 40 : -40,
       opacity: 0
     }),
     center: {
@@ -196,7 +223,7 @@ export default function ProjectDetail() {
     },
     exit: (direction: number) => ({
       zIndex: 0,
-      x: direction < 0 ? 1000 : -1000,
+      x: direction < 0 ? 40 : -40,
       opacity: 0
     })
   };
@@ -262,20 +289,9 @@ export default function ProjectDetail() {
                 exit="exit"
                 transition={{
                   x: { type: "spring", stiffness: 300, damping: 30 },
-                  opacity: { duration: 0.2 }
+                  opacity: { duration: 0.25 }
                 }}
-                drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.8}
-                onDragEnd={(_e, { offset, velocity }) => {
-                  const swipe = swipePower(offset.x, velocity.x);
-                  if (swipe < -swipeConfidenceThreshold || offset.x < -35) {
-                    paginate(1);
-                  } else if (swipe > swipeConfidenceThreshold || offset.x > 35) {
-                    paginate(-1);
-                  }
-                }}
-                className="absolute inset-0 flex items-center justify-center p-0 md:p-1 touch-pan-y"
+                className="w-full h-full flex items-center justify-center"
               >
                 <img 
                   src={project.images[currentIndex]} 
@@ -306,41 +322,22 @@ export default function ProjectDetail() {
           </div>
         </div>
 
-        {/* 3. Footer Section - Always visible at bottom of first screen */}
-        <div className="flex-shrink-0 text-center flex flex-col items-center h-auto pb-2 sm:pb-3">
-          <motion.div
-            initial={{ opacity: 0, y: 5 }}
-            animate={{ opacity: 1, y: 0 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ duration: 0.4 }}
-            className="flex flex-col items-center cursor-default"
-          >
-            {(project.year || project.city) && (
-              <div className="text-[9px] sm:text-[10px] md:text-xs tracking-widest text-[#1a1c1c] uppercase mb-0.5">
-                {project.year}{project.year && project.city && ', '}{project.city}
-              </div>
-            )}
-            <div className="text-[9px] sm:text-[10px] md:text-xs tracking-widest text-editorial-muted uppercase leading-none font-medium">
+        {/* 3. Footer / Pagination Section */}
+        <div className="flex-shrink-0 w-full flex flex-col items-center justify-center pt-1 pb-1 z-10 select-none">
+          {project.images.length > 1 && (
+            <div className="text-[9px] sm:text-[10px] md:text-xs tracking-widest text-[#777] mb-1 font-mono">
               {currentIndex + 1} / {project.images.length}
             </div>
-          </motion.div>
-        </div>
-      </main>
+          )}
 
-      {/* 4. Written Piece Section */}
-      {project.fullText && (
-        <>
-          <section id="texto-obra" className="w-full py-16 md:py-24 px-6 md:px-12 bg-white">
-            <div className="max-w-xl mx-auto">
-              <div className="font-serif text-stone-900 text-xs sm:text-sm leading-relaxed space-y-4 text-left sm:text-justify font-medium whitespace-pre-line tracking-tight px-2 sm:px-6 select-text lowercase">
-                {project.fullText}
-              </div>
-            </div>
-          </section>
-          <Footer />
-        </>
-      )}
+          <div className="text-[8px] sm:text-[9px] md:text-[10px] tracking-widest text-[#999] uppercase flex items-center gap-2">
+            {project.year && <span>{project.year}</span>}
+            {project.year && project.city && <span>•</span>}
+            {project.city && <span>{project.city}</span>}
+          </div>
+        </div>
+
+      </main>
     </div>
   );
 }
