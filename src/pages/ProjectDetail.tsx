@@ -16,6 +16,44 @@ const projectGalleries: Record<string, {
   city?: string
 }> = {
   // Moda Projects
+  "emergentes-abril": {
+    title: "Emergentes x Abril",
+    description: "Diseño y confeccion x Castro Catalina",
+    category: "Moda",
+    year: "2026",
+    city: "Córdoba",
+    images: [
+      "/fotos/DSC_2819.jpg",
+      "/fotos/DSC_2826.jpg",
+    ]
+  },
+  "emergentes-brisa": {
+    title: "Emergentes x Brisa",
+    description: "Diseño y confeccion x Di Campli Francina - Farach Agostina - Garcia jazmin",
+    category: "Moda",
+    year: "2026",
+    city: "Córdoba",
+    images: [
+      "/fotos/DSC_2799.jpg",
+      "/fotos/DSC_2812.jpg",
+      "/fotos/DSC_2801.jpg",
+      "/fotos/DSC_2807.jpg",
+    ]
+  },
+  "emergentes-josefina": {
+    title: "Emergentes x Josefina",
+    description: "Diseño y confeccion x Clavería María Paz - Montes Consuelo - Toranzo Camila",
+    category: "Moda",
+    year: "2026",
+    city: "Córdoba",
+    images: [
+      "/fotos/DSC_2848.jpg",
+      "/fotos/DSC_2860.jpg",
+      "/fotos/DSC_2847.jpg",
+      "/fotos/DSC_2862.jpg",
+      "/fotos/DSC_2845.jpg",
+    ]
+  },
   "emergentes-candelaria": {
     title: "Emergentes x Candelaria",
     description: "Modelo x Candelaria Romero",
@@ -167,11 +205,6 @@ export default function ProjectDetail() {
   const [direction, setDirection] = useState(0);
 
   useEffect(() => {
-    setCurrentIndex(0);
-    setDirection(0);
-  }, [projectId]);
-
-  useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft") paginate(-1);
       if (e.key === "ArrowRight") paginate(1);
@@ -198,6 +231,9 @@ export default function ProjectDetail() {
       return next;
     });
   };
+
+  const backPath = project.category === "Moda" ? "/moda" : "/autor";
+  const backLabel = `Volver a ${project.category}`;
 
   const variants = {
     enter: (direction: number) => ({
