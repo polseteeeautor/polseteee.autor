@@ -5,6 +5,21 @@ import Footer from "../components/Footer";
 
 const projects = [
   {
+    id: "emergentes-abril",
+    title: "Emergentes x Abril",
+    image: "/fotos/DSC_2819.jpg"
+  },
+  {
+    id: "emergentes-brisa",
+    title: "Emergentes x Brisa",
+    image: "/fotos/DSC_2799.jpg"
+  },
+  {
+    id: "emergentes-josefina",
+    title: "Emergentes x Josefina",
+    image: "/fotos/DSC_2848.jpg"
+  },
+  {
     id: "emergentes-keko",
     title: "Emergentes x Keko",
     image: "/fotos/DSC_0227.jpg"
