@@ -16,33 +16,9 @@ const projectGalleries: Record<string, {
   city?: string
 }> = {
   // Moda Projects
-  "emergentes-abril": {
-    title: "Emergentes x Abril",
-    description: "Diseño y confeccion x Castro Catalina",
-    category: "Moda",
-    year: "2026",
-    city: "Córdoba",
-    images: [
-      "/fotos/DSC_2819.jpg",
-      "/fotos/DSC_2826.jpg",
-    ]
-  },
-  "emergentes-brisa": {
-    title: "Emergentes x Brisa",
-    description: "Diseño y confeccion x Di Campli Francina - Farach Agostina - Garcia jazmin",
-    category: "Moda",
-    year: "2026",
-    city: "Córdoba",
-    images: [
-      "/fotos/DSC_2799.jpg",
-      "/fotos/DSC_2812.jpg",
-      "/fotos/DSC_2801.jpg",
-      "/fotos/DSC_2807.jpg",
-    ]
-  },
   "emergentes-josefina": {
     title: "Emergentes x Josefina",
-    description: "Diseño y confeccion x Clavería María Paz - Montes Consuelo - Toranzo Camila",
+    description: "Modelo x Britch Josefina\nDiseño y confeccion x Clavería María Paz - Montes Consuelo - Toranzo Camila",
     category: "Moda",
     year: "2026",
     city: "Córdoba",
@@ -175,6 +151,19 @@ const projectGalleries: Record<string, {
       "/fotos/DSC_5041.jpg",
       "/fotos/4950.jpg",
       "/fotos/DSC_5044.jpg",
+    ]
+  },
+  "ya-no-queda-nadie": {
+    title: "ya no queda nadie",
+    category: "Autor",
+    fullText: `hay espacios que parecen guardar algo de nosotros. rincones del mundo donde creemos poder refugiarnos, permanecer ocultos, escapar de aquello que nos persigue. allí, entre los claroscuros que definen el paisaje y limitan tu mirada, el espacio revela el estado singular de quien lo habita.
+
+pero quizás el refugio nunca haya existido. quizás el secreto siempre haya sido ese: no hay lugar físico capaz de resguardarnos de aquello que somos, ni paisaje lo suficientemente lejano como para volvernos invisibles.
+
+la pérdida se convierte entonces en un camino. correr ya no es una opción; desaparecer, tal vez sí. Dejar que el cuerpo se vuelva parte del paisaje, que la ausencia ocupe el lugar de lo que alguna vez estuvo. como en una película que recordamos de manera distinta a como sucedió, aquello que alguna vez nos enseñaron a reconocer comienza a transformarse en aquello que necesitamos creer. y entre lo que fue y lo que quisiéramos que hubiera sido, permanece una imagen suspendida, triste y silenciosa. un lugar donde, finalmente, ya no queda nadie.`,
+    images: [
+      "/fotos/1.jpg",
+      "/fotos/2.jpg",
     ]
   },
   "queriendo-escapar": {
