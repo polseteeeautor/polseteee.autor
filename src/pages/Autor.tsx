@@ -5,6 +5,11 @@ import Footer from "../components/Footer";
 
 const projects = [
   {
+    id: "ya-no-queda-nadie",
+    title: "ya no queda nadie",
+    image: "/fotos/1.jpg"
+  },
+  {
     id: "queriendo-escapar",
     title: "se me pasa la vida queriendo escapar",
     image: "/fotos/DSC_8774.jpg"
