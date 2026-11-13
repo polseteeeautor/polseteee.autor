@@ -156,6 +156,8 @@ const projectGalleries: Record<string, {
   "ya-no-queda-nadie": {
     title: "ya no queda nadie",
     category: "Autor",
+    year: "2026",
+    city: "Zapallar",
     fullText: `hay espacios que parecen guardar algo de nosotros. rincones del mundo donde creemos poder refugiarnos, permanecer ocultos, escapar de aquello que nos persigue. allí, entre los claroscuros que definen el paisaje y limitan tu mirada, el espacio revela el estado singular de quien lo habita.
 
 pero quizás el refugio nunca haya existido. quizás el secreto siempre haya sido ese: no hay lugar físico capaz de resguardarnos de aquello que somos, ni paisaje lo suficientemente lejano como para volvernos invisibles.
